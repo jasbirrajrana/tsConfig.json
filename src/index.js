@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 const inquirer = require("inquirer");
 const path = require("path");
+const chalk = require("chalk");
 const { writeFile, readdir, readFile } = require("fs").promises;
 
 const configFiles = {};
@@ -22,7 +23,7 @@ const configFolderPath = path.resolve(__dirname, "config");
       choices: Object.keys(configFiles),
     },
   ]);
-  let config = await readFile(configFiles[framework].catch(console.log));
+  let config = await readFile(configFiles[framework]);
   const tsconfig = path.join(process.cwd(), "tsconfig.json");
   if (framework === "node") {
     const reg = new RegExp(/(?<=v)(\d+)/);
@@ -49,5 +50,8 @@ const configFolderPath = path.resolve(__dirname, "config");
   }
   await writeFile(tsconfig, config.toString());
 
-  console.log("tsconfig.json successfully created");
+  console.log(
+    chalk.yellow.bold(`⚡️ tsconfig.json created`),
+    chalk.green.bold("Successfully")
+  );
 })();

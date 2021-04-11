@@ -1,6 +1,6 @@
 {
   "name": "tsconfig-n",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Quickly create an opinionated tsconfig.json Based on your choice :)",
   "main": "src/index.js",
   "bin": "src/index.js",
@@ -16,6 +16,7 @@
   "author": "Jasbir Raj Rana",
   "license": "MIT",
   "dependencies": {
+    "chalk": "^4.1.0",
     "inquirer": "^8.0.0"
   },
   "repository": {
