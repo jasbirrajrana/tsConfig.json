@@ -7,13 +7,13 @@ const configFiles = {};
 const configFolderPath = path.resolve(__dirname, "config");
 
 (async () => {
-  const files = await readdir(configFolderPath);
+  const files = await readdir(configFolderPath.catch(console.log));
   for (let i of files) {
     // framework name is situated between 2 dots eg- react between 2 '.'(s)
     const frameworkName = i.split(".")[1];
     configFiles[frameworkName] = path.join(configFolderPath, i);
   }
-  console.log(configFiles);
+
   const { framework } = await inquirer.prompt([
     {
       type: "list",
@@ -22,7 +22,7 @@ const configFolderPath = path.resolve(__dirname, "config");
       choices: Object.keys(configFiles),
     },
   ]);
-  let config = await readFile(configFiles[framework]);
+  let config = await readFile(configFiles[framework].catch(console.log));
   const tsconfig = path.join(process.cwd(), "tsconfig.json");
   if (framework === "node") {
     const reg = new RegExp(/(?<=v)(\d+)/);

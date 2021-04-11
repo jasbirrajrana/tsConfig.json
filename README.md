@@ -1,5 +1,5 @@
 ### tsconfig-n
 
 ```javascript
-npm i tsconfig-n
+npx  tsconfig-n
 ```
