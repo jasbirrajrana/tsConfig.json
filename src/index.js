@@ -7,7 +7,7 @@ const configFiles = {};
 const configFolderPath = path.resolve(__dirname, "config");
 
 (async () => {
-  const files = await readdir(configFolderPath.catch(console.log));
+  const files = await readdir(configFolderPath);
   for (let i of files) {
     // framework name is situated between 2 dots eg- react between 2 '.'(s)
     const frameworkName = i.split(".")[1];
